@@ -6,7 +6,7 @@ st.set_page_config(page_title="赣州富硒农产品产销便民服务平台", l
 st.title("赣州富硒农产品产销便民服务平台")
 
 # 全局加载CSV数据，提前定义df，解决变量未定义报错
-df = pd.read_csv("data.csv")
+df = pd.read_csv("data.csv",encoding="gbk")
 st.success("数据加载完成，可切换下方板块查看对应内容")
 
 # 左侧身份下拉选择框
