@@ -17,14 +17,14 @@ if identity == "消费者（购买用户）":
     st.header("🛒 消费者产品选购专区")
     st.subheader("全部富硒农产品介绍与售价")
     # 筛选消费者展示字段
-    consumer_df = df[["产品名称", "产品品类", "产地", "单价（元/斤）", "富硒等级", "供货状态"]]
+    consumer_df = df[["产品名称", "产品分类", "产地", "单价", "富硒等级", "上市季节"]]
     st.dataframe(consumer_df, use_container_width=True)
 
 # ========== 经销商页面逻辑 ==========
 elif identity == "经销商（收购商）":
     st.header("🤝 经销商收购参考专区")
     st.subheader("全部富硒农产品产地、单价、供货销量明细")
-    dealer_df = df[["产品名称", "产品品类", "产地", "单价（元/斤）", "月度供货量"]]
+    dealer_df = df[["产品名称", "产品分类", "产地", "单价", "月度销量"]]
     st.dataframe(dealer_df, use_container_width=True)
     st.info("提示：您可以横向对比不同县城同款农产品的售价，选择性价比更高的货源收购。")
 
@@ -33,7 +33,7 @@ elif identity == "农户（种植户）":
     st.header("👨‍🌾 农户种植参考专区")
     st.subheader("各县农产品月度总销量统计表（用来判断今年种什么更好卖）")
     # 按产地分组统计总销量
-    farmer_data = df.groupby("产地")["月度供货量"].sum().reset_index()
-    farmer_data.columns = ["种植产地（县城）", "月度总销量"]
+    farmer_data = df.groupby("产地")["月度销量"].sum().reset_index()
+    farmer_data.columns = ["产地", "月度销量"]
     st.dataframe(farmer_data, use_container_width=True)
     st.info("提示：表格里销量越高的农产品品类，市场需求越大，您可以优先规划种植这类作物，减少滞销风险。")
